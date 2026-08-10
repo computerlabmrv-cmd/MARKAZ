@@ -1,747 +1,759 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>خلاصة الفقه الإسلامي — على مذهب الإمام الشافعي</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Amiri', 'Traditional Arabic', serif;
-    background: #f5f0e8;
-    color: #2c1a0e;
-    min-height: 100vh;
-    direction: rtl;
-  }
-  @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Royal Palace | Ultra-Luxury Five-Star Dining & Culinary Artistry</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        royal: {
+                            gold: '#D4AF37',
+                            champagne: '#F7EFD2',
+                            burgundy: '#2E0808',
+                            dark: '#0D0202',
+                            emerald: '#0B1A13',
+                            bronze: '#C5A059'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 
-  /* HEADER */
-  header {
-    background: #2c1a0e;
-    color: #f5e6c8;
-    text-align: center;
-    padding: 18px 24px 14px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  }
-  header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
-  header p { font-size: 13px; color: #c9a96e; margin-top: 4px; }
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS & Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-  /* SEARCH */
-  #search-wrap {
-    background: #3d2410;
-    padding: 10px 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-  }
-  #search-input {
-    width: 320px;
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: none;
-    background: #f5e6c8;
-    color: #2c1a0e;
-    font-size: 14px;
-    font-family: inherit;
-    direction: rtl;
-    outline: none;
-  }
-  #search-input::placeholder { color: #8a6a4a; }
-
-  /* LAYOUT */
-  #layout {
-    display: flex;
-    max-width: 1100px;
-    margin: 0 auto;
-    min-height: calc(100vh - 110px);
-  }
-
-  /* SIDEBAR */
-  #sidebar {
-    width: 240px;
-    min-width: 240px;
-    background: #3d2410;
-    color: #f5e6c8;
-    overflow-y: auto;
-    position: sticky;
-    top: 110px;
-    height: calc(100vh - 110px);
-  }
-  #sidebar h2 {
-    font-size: 14px;
-    font-weight: 700;
-    color: #c9a96e;
-    padding: 14px 16px 10px;
-    border-bottom: 1px solid #5a3820;
-    text-align: right;
-  }
-  .toc-section { border-bottom: 1px solid #5a3820; }
-  .toc-section-title {
-    font-size: 11px;
-    color: #c9a96e;
-    padding: 10px 16px 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .toc-item {
-    display: block;
-    padding: 9px 16px;
-    font-size: 13px;
-    color: #d4b896;
-    cursor: pointer;
-    text-align: right;
-    line-height: 1.5;
-    transition: background 0.15s, color 0.15s;
-    border: none;
-    background: none;
-    width: 100%;
-  }
-  .toc-item:hover { background: #5a3820; color: #f5e6c8; }
-  .toc-item.active { background: #c9a96e; color: #2c1a0e; font-weight: 700; }
-  .toc-item .page-num { font-size: 10px; color: #8a6a4a; margin-right: 6px; }
-  .toc-item.active .page-num { color: #5a3820; }
-
-  /* CONTENT */
-  #content {
-    flex: 1;
-    padding: 32px 40px;
-    background: #fdf8f0;
-    min-height: 100%;
-  }
-  #page-header {
-    border-bottom: 2px solid #c9a96e;
-    padding-bottom: 14px;
-    margin-bottom: 24px;
-  }
-  #page-title {
-    font-size: 26px;
-    font-weight: 700;
-    color: #2c1a0e;
-    text-align: right;
-  }
-  #page-meta {
-    font-size: 13px;
-    color: #8a6a4a;
-    margin-top: 6px;
-    text-align: right;
-  }
-  #page-text {
-    font-size: 18px;
-    line-height: 2.4;
-    color: #2c1a0e;
-    text-align: right;
-  }
-  #page-text p { margin-bottom: 16px; }
-  #page-text .section-head {
-    font-size: 17px;
-    font-weight: 700;
-    color: #7a3b0a;
-    margin: 22px 0 10px;
-    border-right: 4px solid #c9a96e;
-    padding-right: 10px;
-  }
-  #page-text ol, #page-text ul { padding-right: 20px; margin-bottom: 14px; }
-  #page-text li { margin-bottom: 8px; line-height: 2; }
-
-  /* HOVER WORDS */
-  .ar-word {
-    display: inline;
-    cursor: default;
-    position: relative;
-    border-radius: 3px;
-    transition: background 0.12s;
-  }
-  .ar-word.glossed {
-    cursor: pointer;
-    border-bottom: 1px dotted #c9a96e;
-    color: #7a3b0a;
-  }
-  .ar-word.glossed:hover { background: #f5e6c8; }
-
-  /* TOOLTIP */
-  #tooltip {
-    position: fixed;
-    background: #2c1a0e;
-    color: #f5e6c8;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 13px;
-    direction: ltr;
-    text-align: left;
-    max-width: 260px;
-    line-height: 1.5;
-    pointer-events: none;
-    display: none;
-    z-index: 9999;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    border: 1px solid #c9a96e;
-  }
-  #tooltip .t-word { font-weight: 700; color: #c9a96e; display: block; margin-bottom: 3px; }
-  #tooltip .t-meaning { color: #d4b896; }
-
-  /* NAV */
-  #nav-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 36px;
-    padding-top: 20px;
-    border-top: 1px solid #e0d0b8;
-    direction: ltr;
-  }
-  .nav-btn {
-    background: #2c1a0e;
-    color: #f5e6c8;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background 0.15s;
-  }
-  .nav-btn:hover { background: #7a3b0a; }
-  .nav-btn:disabled { background: #c0b0a0; cursor: default; }
-  #page-counter { font-size: 13px; color: #8a6a4a; }
-
-  /* GLOSSARY KEY */
-  #glossary-key {
-    margin-top: 30px;
-    padding: 14px 18px;
-    background: #f0e8d8;
-    border-radius: 8px;
-    border: 1px solid #d4b896;
-    font-size: 13px;
-    color: #5a3820;
-    direction: rtl;
-    text-align: right;
-  }
-  #glossary-key strong { color: #7a3b0a; }
-
-  /* WELCOME */
-  #welcome {
-    text-align: center;
-    padding: 60px 20px;
-    color: #8a6a4a;
-  }
-  #welcome h2 { font-size: 22px; color: #2c1a0e; margin-bottom: 12px; }
-  #welcome p { font-size: 15px; line-height: 1.8; }
-
-  @media (max-width: 700px) {
-    #layout { flex-direction: column; }
-    #sidebar { width: 100%; min-width: 0; position: static; height: auto; max-height: 200px; }
-    #content { padding: 20px 16px; }
-    #page-text { font-size: 16px; }
-    #search-input { width: 90%; }
-  }
-</style>
+    <style>
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #F7EFD2 0%, #D4AF37 50%, #C5A059 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border-color: #D4AF37;
+        }
+        .royal-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0D0202;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-royal-dark text-royal-champagne font-sans antialiased selection:bg-royal-gold selection:text-royal-dark">
 
-<header>
-  <h1>خُلَاصَةُ الْفِقْهِ الإِسْلَامِي</h1>
-  <p>على مذهب الإمام الشافعي (رح) — تأليف: عبد الرحمن باوا الملييباري</p>
-</header>
-
-<div id="search-wrap">
-  <input id="search-input" type="text" placeholder="ابحث في المحتويات..." oninput="filterToc(this.value)" />
-</div>
-
-<div id="layout">
-  <div id="sidebar">
-    <h2>📚 المحتويات</h2>
-    <div id="toc-list"></div>
-  </div>
-  <div id="content">
-    <div id="welcome">
-      <h2>أهلاً وسهلاً</h2>
-      <p>اختر موضوعاً من القائمة على اليمين للبدء في القراءة.<br>
-      ضع المؤشر فوق الكلمات الملوّنة لمعرفة معناها بالإنجليزية.</p>
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-royal-dark transition-opacity duration-700">
+        <div class="relative flex items-center justify-center mb-6">
+            <div class="absolute w-24 h-24 border-2 border-royal-gold/30 rounded-full animate-ping"></div>
+            <div class="absolute w-32 h-32 border border-royal-gold/20 rounded-full animate-spin"></div>
+            <i class="fa-solid fa-crown text-5xl text-royal-gold animate-bounce"></i>
+        </div>
+        <h1 class="font-serif text-2xl tracking-[0.3em] text-royal-gold uppercase mb-3">Hotel Royal Palace</h1>
+        <div class="w-48 h-1 bg-royal-burgundy rounded-full overflow-hidden border border-royal-gold/40">
+            <div id="loader-bar" class="w-0 h-full bg-royal-gold transition-all duration-300"></div>
+        </div>
+        <p class="text-xs text-royal-gold/60 mt-2 tracking-widest uppercase">Preparing Luxury Experience...</p>
     </div>
-  </div>
-</div>
 
-<div id="tooltip">
-  <span class="t-word" id="t-word"></span>
-  <span class="t-meaning" id="t-meaning"></span>
-</div>
+    <!-- Navigation Bar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 backdrop-blur-md bg-royal-dark/80 border-b border-royal-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-royal-gold flex items-center justify-center bg-royal-burgundy group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-crown text-royal-gold text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-widest text-white block">ROYAL PALACE</span>
+                    <span class="text-[10px] tracking-[0.2em] text-royal-gold uppercase block">Five-Star Dining</span>
+                </div>
+            </a>
 
-<script>
-const glossary = {
-  'الوُضُوء': ['Al-Wudu', 'Islamic ritual washing of hands, face, arms and feet before prayer'],
-  'الوضوء': ['Al-Wudu', 'Islamic ritual washing before prayer'],
-  'الصَّلاة': ['As-Salah', 'The five daily prayers — obligatory for every Muslim'],
-  'الصلاة': ['As-Salah', 'The five daily prayers'],
-  'الطَّهَارَة': ['At-Taharah', 'Ritual purity — cleanliness required before worship'],
-  'الطهارة': ['At-Taharah', 'Ritual purity'],
-  'النِّيَّة': ['An-Niyyah', 'Intention — conscious intention made before acts of worship'],
-  'النية': ['An-Niyyah', 'Intention before worship'],
-  'الفَرْض': ['Al-Fard', 'Obligatory religious duty — must be performed'],
-  'فَرْضٌ': ['Fard', 'Obligatory duty'],
-  'الغُسْل': ['Al-Ghusl', 'Full ritual bath required after major ritual impurity (janabah, hayd, nifas)'],
-  'الغسل': ['Al-Ghusl', 'Full ritual bath'],
-  'التَّيَمُّم': ['At-Tayammum', 'Dry ablution using clean soil when water is unavailable or harmful'],
-  'التيمم': ['At-Tayammum', 'Dry ablution with soil'],
-  'النَّجَاسَة': ['An-Najasah', 'Ritual impurity — a substance that invalidates prayer if present'],
-  'النجاسة': ['An-Najasah', 'Ritual impurity'],
-  'الأَذَان': ['Al-Adhan', 'The Islamic call to prayer, announcing prayer time'],
-  'الأذان': ['Al-Adhan', 'Call to prayer'],
-  'الإِقَامَة': ['Al-Iqamah', 'Second call indicating prayer is immediately beginning'],
-  'الإقامة': ['Al-Iqamah', 'Second call to prayer'],
-  'الرُّكُوع': ['Ar-Ruku', 'Bowing — the bowing position during prayer with hands on knees'],
-  'الركوع': ['Ar-Ruku', 'Bowing in prayer'],
-  'السُّجُود': ['As-Sujud', 'Prostration — placing forehead, nose, palms, knees and toes on the ground'],
-  'السجود': ['As-Sujud', 'Prostration in prayer'],
-  'الْحَدَث': ['Al-Hadath', 'State of ritual impurity — minor (requires wudu) or major (requires ghusl)'],
-  'الحدث': ['Al-Hadath', 'State of ritual impurity'],
-  'الْمَكْرُوه': ['Al-Makruh', 'Disliked/discouraged action — not forbidden, but better avoided'],
-  'المكروه': ['Al-Makruh', 'Disliked action'],
-  'الْوَاجِب': ['Al-Wajib', 'Obligatory — must be done; omitting it is sinful'],
-  'الواجب': ['Al-Wajib', 'Obligatory action'],
-  'السُّنَّة': ['As-Sunnah', 'Recommended practice of the Prophet ﷺ — rewarded if done, not sinful if omitted'],
-  'السنة': ['As-Sunnah', 'Prophetic practice'],
-  'الشَّافِعِي': ['Ash-Shafi\'i', 'Imam Muhammad ibn Idris al-Shafi\'i — founder of the Shafi\'i school of Islamic law'],
-  'الشافعي': ['Ash-Shafi\'i', 'Founder of the Shafi\'i school'],
-  'الْفِقْه': ['Al-Fiqh', 'Islamic jurisprudence — the understanding and rulings of Islamic law'],
-  'الفقه': ['Al-Fiqh', 'Islamic jurisprudence'],
-  'الْمَاء': ['Al-Ma\'', 'Water — the primary medium for ritual purification'],
-  'الماء': ['Al-Ma\'', 'Water for purification'],
-  'الْقِبْلَة': ['Al-Qiblah', 'The direction of the Ka\'bah in Makkah — faced during prayer'],
-  'القبلة': ['Al-Qiblah', 'Direction of Ka\'bah, Makkah'],
-  'الْحَيْض': ['Al-Hayd', 'Menstruation — during this time, prayer and fasting are not performed'],
-  'الحيض': ['Al-Hayd', 'Menstruation'],
-  'الْجَنَابَة': ['Al-Janabah', 'Major ritual impurity — occurs after sexual intercourse or ejaculation; requires ghusl'],
-  'الجنابة': ['Al-Janabah', 'Major ritual impurity requiring ghusl'],
-  'الْمَسْح': ['Al-Mash', 'Wiping — e.g. wiping over leather socks (khuffayn) instead of washing feet'],
-  'المسح': ['Al-Mash', 'Wiping in wudu'],
-  'الْخُفَّيْن': ['Al-Khuffayn', 'Leather socks — can be wiped over during wudu (1 day for resident, 3 for traveller)'],
-  'الخفين': ['Al-Khuffayn', 'Leather socks wiped in wudu'],
-  'التَّشَهُّد': ['At-Tashahud', 'Declaration recited while sitting in prayer after second and final rak\'ah'],
-  'التشهد': ['At-Tashahud', 'Declaration in prayer sitting position'],
-  'الرَّكْعَة': ['Ar-Rak\'ah', 'A unit of prayer — consists of standing, recitation, bowing, and two prostrations'],
-  'الركعة': ['Ar-Rak\'ah', 'A unit/cycle of prayer'],
-  'الإِمَام': ['Al-Imam', 'Prayer leader — also used for great Islamic scholars like Imam al-Shafi\'i'],
-  'الإمام': ['Al-Imam', 'Prayer leader / great scholar'],
-  'الْمُكَلَّف': ['Al-Mukallaf', 'A legally responsible Muslim — adult, sane, having reached puberty'],
-  'المكلف': ['Al-Mukallaf', 'Legally responsible Muslim'],
-  'الصَّبِيّ': ['As-Sabiyy', 'A boy who has not yet reached puberty'],
-  'الصبي': ['As-Sabiyy', 'Child before puberty'],
-  'الْبَالِغ': ['Al-Baligh', 'A person who has reached puberty — legally accountable for acts of worship'],
-  'البالغ': ['Al-Baligh', 'Person who has reached puberty'],
-  'الكَافِر': ['Al-Kafir', 'A non-Muslim'],
-  'الْمُرْتَد': ['Al-Murtadd', 'An apostate — one who has left Islam'],
-  'الجُنُون': ['Al-Junun', 'Insanity — a condition that suspends religious obligations'],
-  'الإِغْمَاء': ['Al-Ighma\'', 'Fainting / loss of consciousness'],
-  'النِّفَاس': ['An-Nifas', 'Postpartum bleeding — blood after childbirth; similar rulings to menstruation'],
-  'النفاس': ['An-Nifas', 'Postpartum bleeding'],
-  'الْمَنِيّ': ['Al-Maniyy', 'Semen — its emission necessitates ghusl'],
-  'المذي': ['Al-Madhy', 'Pre-seminal fluid — najis, breaks wudu'],
-  'الْوَدْي': ['Al-Wadyy', 'Post-urinal discharge — najis, breaks wudu'],
-  'الْمَيْتَة': ['Al-Maytah', 'Carrion / dead animal — impure except for fish and locusts'],
-  'الخمر': ['Al-Khamr', 'Wine / alcohol — ritually impure (najis)'],
-  'الزَّوَال': ['Az-Zawal', 'Solar noon — the sun\'s passing of its zenith; start of Dhuhr time'],
-  'الظُّهْر': ['Adh-Dhuhr', 'The midday prayer — from zawal until shadow equals object'],
-  'الْعَصْر': ['Al-\'Asr', 'The afternoon prayer'],
-  'الْمَغْرِب': ['Al-Maghrib', 'The sunset prayer'],
-  'الْعِشَاء': ['Al-\'Isha\'', 'The night prayer'],
-  'الصُّبْح': ['As-Subh', 'The dawn prayer (also called Fajr)'],
-  'الرَّمَضَان': ['Ramadan', 'The blessed month of fasting — ninth month of the Islamic calendar'],
-  'رمضان': ['Ramadan', 'Month of fasting'],
-  'التَّوْبَة': ['At-Tawbah', 'Repentance — turning back to Allah from sin'],
-  'الطُّهُور': ['At-Tuhur', 'Purification / that which purifies'],
-  'الصَّعِيد': ['As-Sa\'id', 'Clean earth/soil — used for tayammum'],
-  'التُّرَاب': ['At-Turab', 'Dust/soil — the medium for tayammum'],
-  'الْعَوْرَة': ['Al-\'Awrah', 'The parts of the body that must be covered; for men: navel to knee; for women in prayer: entire body except face and hands'],
-};
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-8 font-serif tracking-wider text-sm">
+                <a href="#home" class="text-royal-gold hover:text-white transition-colors">Home</a>
+                <a href="#about" class="text-royal-champagne hover:text-royal-gold transition-colors">About</a>
+                <a href="#menu" class="text-royal-champagne hover:text-royal-gold transition-colors">Grand Menu</a>
+                <a href="#experiences" class="text-royal-champagne hover:text-royal-gold transition-colors">VIP Dining</a>
+                <a href="#gallery" class="text-royal-champagne hover:text-royal-gold transition-colors">Gallery</a>
+                <a href="#contact" class="text-royal-champagne hover:text-royal-gold transition-colors">Contact</a>
+            </nav>
 
-const pages = [
-  {
-    id: 'ahkam',
-    title: 'الأَحْكَامُ الشَّرْعِيَّةُ',
-    meta: 'صفحة ١٤ — باب الأحكام',
-    content: `<p>الْحُكْمُ إِمَّا طَلَبُ فِعْلٍ أَوْ طَلَبُ تَرْكٍ أَوْ تَخْيِيرٌ بَيْنَهُمَا. فَالْأَوَّلُ — إِنْ كَانَ جَازِمًا فَوُجُوبٌ وَإِلَّا فَنَدْبٌ. وَالثَّانِي — إِنْ كَانَ جَازِمًا فَتَحْرِيمٌ وَإِلَّا فَكَرَاهَةٌ، إِنْ وَرَدَ فِيهِ نَهْيٌ صَرِيحٌ وَخِلَافُ الأُولَى إِنْ كَانَ النَّهْيُ فِيهِ غَيْرُ صَرِيحٍ وَالثَّالِثُ هِيَ الإِبَاحَةُ.</p>
-<div class="section-head">الواجب</div>
-<p>فَالْوَاجِبُ مَا يُثَابُ عَلَى فِعْلِهِ وَيُعَاقَبُ عَلَى تَرْكِهِ. كَصَوْمِ رَمَضَانَ.</p>
-<div class="section-head">المندوب</div>
-<p>وَالْمَنْدُوبُ مَا يُثَابُ عَلَى فِعْلِهِ وَلَا يُعَاقَبُ عَلَى تَرْكِهِ. كَصَلَاةِ الوِتْرِ.</p>
-<div class="section-head">الحرام</div>
-<p>وَالْحَرَامُ مَا يُثَابُ عَلَى تَرْكِهِ وَيُعَاقَبُ عَلَى فِعْلِهِ. كَعُقُوقِ الوَالِدَيْنِ.</p>
-<div class="section-head">المكروه وخلاف الأولى</div>
-<p>وَالْمَكْرُوهُ وَخِلَافُ الأُولَى كِلَاهُمَا مَا يُثَابُ عَلَى تَرْكِهِ وَلَا يُعَاقَبُ عَلَى فِعْلِهِ.</p>
-<div class="section-head">المباح</div>
-<p>وَالْمُبَاحُ مَا لَا يُثَابُ وَلَا يُعَاقَبُ عَلَى فِعْلِهِ وَلَا عَلَى تَرْكِهِ. وَيُقَالُ لِلْوَاجِبِ فَرْضٌ، وَلِلْمَنْدُوبِ سُنَّةٌ وَمُسْتَحَبٌّ، وَلِلْمُبَاحِ جَائِزٌ وَحَلَالٌ.</p>
-<div class="section-head">الفرض العين والكفاية</div>
-<p>وَالْفَرْضُ نَوْعَانِ: فَرْضُ عَيْنٍ وَفَرْضُ كِفَايَةٍ. فَفَرْضُ الْعَيْنِ هُوَ الْوَاجِبُ عَلَى كُلِّ مُكَلَّفٍ كَالْمَكْتُوبَاتِ الْخَمْسِ. وَفَرْضُ الْكِفَايَةِ هُوَ الْوَاجِبُ عَلَى جُمْلَةِ الْمُكَلَّفِينَ كَالأَمْرِ بِالْمَعْرُوفِ وَالنَّهْيِ عَنِ الْمُنْكَرِ.</p>`
-  },
-  {
-    id: 'salah-wujub',
-    title: 'وُجُوبُ الصَّلَاةِ',
-    meta: 'صفحة ١٥ — باب الصلاة',
-    content: `<p>إِنَّمَا تَجِبُ الْمَكْتُوبَاتُ الْخَمْسُ عَلَى كُلِّ مُسْلِمٍ مُكَلَّفٍ طَاهِرٍ. فَلَا يَجِبُ الْقَضَاءُ عَلَى كَافِرٍ أَصْلِيٍّ إِذَا أَسْلَمَ، وَلَا عَلَى صَبِيٍّ إِذَا بَلَغَ، وَلَا عَلَى مَنْ زَالَ عَقْلُهُ بِنَحْوِ جُنُونٍ أَوْ إِغْمَاءٍ إِذَا أَفَاقَ، وَلَا عَلَى حَائِضٍ وَلَا نُفَسَاءَ إِذَا طَهَّرَتَا.</p>
-<div class="section-head">زوال الموانع وعروضها</div>
-<p>إِذَا زَالَتْ هَذِهِ الْمَوَانِعُ — الْكُفْرُ وَالْجُنُونُ وَالصِّبَا وَالْحَيْضُ وَالنِّفَاسُ — وَبَقِيَ مِنَ الْوَقْتِ قَدْرُ تَكْبِيرَةٍ وَجَبَتْ تِلْكَ الصَّلَاةُ وَالَّتِي قَبْلَهَا إِنْ كَانَتْ تُجْمَعُ مَعَهَا.</p>
-<div class="section-head">حد تارك الصلاة</div>
-<p>وُجُوبُ الصَّلَاةِ مَعْلُومٌ مِنَ الدِّينِ بِالضَّرُورَةِ. فَمَنْ جَحَدَهُ فَقَدْ كَفَرَ وَقُتِلَ بِكُفْرِهِ. وَمَنْ أَخْرَجَهَا عَنْ وَقْتِهَا وَوَقْتِ جَمْعِهَا كَسَلًا حَدًّا لَا كُفْرًا فَيُقْتَلُ وَيُغْسَلُ وَيُصَلَّى عَلَيْهِ وَيُدْفَنُ فِي مَقَابِرِ الْمُسْلِمِينَ.</p>
-<div class="section-head">الصبي والصلاة</div>
-<p>يُؤْمَرُ الصَّبِيُّ الْمُمَيِّزُ بِالصَّلَاةِ بَعْدَ سَبْعٍ، وَيُضْرَبُ عَلَيْهَا بَعْدَ عَشْرٍ لِمَا رَوَى أَبُودَاوُدَ عَنِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: "مُرُوا الصَّبِيَّ بِالصَّلَاةِ إِذَا بَلَغَ سَبْعَ سِنِينَ وَإِذَا بَلَغَ عَشْرًا فَاضْرِبُوهُ عَلَيْهَا".</p>`
-  },
-  {
-    id: 'shurut-salah',
-    title: 'شُرُوطُ الصَّلَاةِ',
-    meta: 'صفحة ١٧ — باب الصلاة',
-    content: `<p>لِلصَّلَاةِ شُرُوطٌ وَأَرْكَانٌ. وَشَرْطُ الشَّيْءِ وَرُكْنُهُ كِلَاهُمَا مَا يَتَوَقَّفُ عَلَيْهِ وُجُودُهُ شَرْعًا. لَكِنَّ الأَوَّلَ لَيْسَ مِنْ أَجْزَائِهِ وَالثَّانِيَ مِنْ أَجْزَائِهِ. وَشُرُوطُ الصَّلَاةِ خَمْسَةٌ:</p>
-<div class="section-head">الشرط الأول: الطهارة عن الحدث</div>
-<p>أَحَدُهَا — الطَّهَارَةُ عَنِ الْحَدَثِ.</p>
-<div class="section-head">الشرط الثاني: طهارة البدن والمكان</div>
-<p>ثَانِيهَا — طَهَارَةُ الْبَدَنِ وَالْمَلْبُوسِ وَالْمَكَانِ عَنِ النَّجَسِ. فَلَا تَصِحُّ الصَّلَاةُ مَعَ نَجَسٍ غَيْرِ مَعْفُوٍّ عَنْهُ وَلَوْ نَاسِيًا أَوْ جَاهِلًا.</p>
-<div class="section-head">الشرط الثالث: ستر العورة</div>
-<p>ثَالِثُهَا — سَتْرُ الْعَوْرَةِ.</p>
-<div class="section-head">الشرط الرابع: معرفة دخول الوقت</div>
-<p>رَابِعُهَا — مَعْرِفَةُ دُخُولِ الْوَقْتِ. فَمَنْ صَلَّى بِغَيْرِ مَعْرِفَتِهِ يَقِينًا أَوْ ظَنًّا لَمْ تَصِحَّ صَلَاتُهُ وَإِنْ وَقَعَتْ فِي الْوَقْتِ.</p>
-<div class="section-head">الشرط الخامس: استقبال القبلة</div>
-<p>خَامِسُهَا — اسْتِقْبَالُ الْقِبْلَةِ. إِلَّا فِي صَلَاةِ شِدَّةِ الْخَوْفِ وَنَفْلِ سَفَرٍ مُبَاحٍ.</p>`
-  },
-  {
-    id: 'taharah',
-    title: 'الطَّهَارَة',
-    meta: 'صفحة ١٨ — باب الطهارة',
-    content: `<p>قَالَ اللهُ تَعَالَى: إِنَّ اللهَ يُحِبُّ التَّوَّابِينَ وَيُحِبُّ الْمُتَطَهِّرِينَ. وَقَالَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: مِفْتَاحُ الصَّلَاةِ الطُّهُورُ. وَقَالَ: لَا تُقْبَلُ صَلَاةٌ بِغَيْرِ طُهُورٍ.</p>
-<p>الطَّهَارَةُ لُغَةً النَّظَافَةُ. وَشَرْعًا رَفْعُ الْمَنْعِ الْمُتَرَتِّبِ عَلَى الْحَدَثِ أَوِ الْخُبْثِ. وَالْحَدَثُ حَدَثَانِ: حَدَثٌ أَصْغَرُ وَحَدَثٌ أَكْبَرُ. فَالطَّهَارَةُ عَنِ الأَوَّلِ الْوُضُوءُ وَالطَّهَارَةُ عَنِ الثَّانِي الْغُسْلُ.</p>
-<div class="section-head">الماء المطلق</div>
-<p>يُشْتَرَطُ لِكُلِّ طَهَارَةٍ مَاءٌ طَهُورٌ. وَهُوَ الطَّاهِرُ فِي نَفْسِهِ وَالْمُطَهِّرُ لِغَيْرِهِ. وَيُقَالُ لَهُ الْمَاءُ الْمُطْلَقُ. وَهُوَ مَا يَقَعُ عَلَيْهِ اسْمُ الْمَاءِ بِلَا قَيْدٍ كَمَاءِ الْبِحَارِ وَالأَنْهَارِ وَالآبَارِ وَالأَمْطَارِ.</p>
-<div class="section-head">الماء المستعمل</div>
-<p>الْمَاءُ الْمُسْتَعْمَلُ هُوَ مَا اسْتُعْمِلَ فِي رَفْعِ حَدَثٍ أَوْ فِي نَفْلٍ كَالْغَسْلَةِ الثَّانِيَةِ وَالثَّالِثَةِ. حُكْمُهُ طَاهِرٌ غَيْرُ مُطَهِّرٍ.</p>
-<div class="section-head">الماء المتنجس</div>
-<p>الْمَاءُ إِذَا بَلَغَ قُلَّتَيْنِ فَهُوَ كَثِيرٌ. وَالْكَثِيرُ لَا يَنْجُسُ بِمُلَاقَاةِ نَجَسٍ إِلَّا إِذَا تَغَيَّرَ. وَإِذَا كَانَ الْمَاءُ قَلِيلًا فَيَنْجُسُ بِمُلَاقَاةِ نَجَسٍ وَإِنْ لَمْ يَتَغَيَّرْ.</p>`
-  },
-  {
-    id: 'wudu-furood',
-    title: 'الْوُضُوء — فُرُوضُه وسُنَنُه',
-    meta: 'صفحة ١٨-٣١ — باب الوضوء',
-    content: `<p>قَالَ اللهُ تَعَالَى: يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ وَامْسَحُوا بِرُءُوسِكُمْ وَأَرْجُلَكُمْ إِلَى الْكَعْبَيْنِ.</p>
-<p>الْوُضُوءُ لُغَةً غَسْلُ بَعْضِ الأَعْضَاءِ. وَشَرْعًا اسْتِعْمَالُ الْمَاءِ فِي أَعْضَاءٍ مَخْصُوصَةٍ مُفْتَتَحًا بِنِيَّةٍ.</p>
-<div class="section-head">فروض الوضوء الستة</div>
-<ol>
-<li><strong>النِّيَّةُ</strong> — وَتَكْفِي إِحْدَى النِّيَّاتِ: نَوَيْتُ الْوُضُوءَ، أَوْ نَوَيْتُ أَدَاءَ الْوُضُوءِ، أَوْ نَوَيْتُ فَرْضَ الْوُضُوءِ.</li>
-<li><strong>غَسْلُ الْوَجْهِ</strong> — مَا بَيْنَ مَنَابِتِ شَعْرِ الرَّأْسِ وَمُنْتَهَى اللَّحْيَيْنِ طُولًا، وَعَرْضًا مَا بَيْنَ الأُذُنَيْنِ.</li>
-<li><strong>غَسْلُ الْيَدَيْنِ مَعَ الْمِرْفَقَيْنِ</strong>.</li>
-<li><strong>مَسْحُ بَعْضِ الرَّأْسِ</strong> — وَلَوْ نَزْعَةً أَوْ بَعْضَ شَعْرَةٍ.</li>
-<li><strong>غَسْلُ الرِّجْلَيْنِ مَعَ الْكَعْبَيْنِ</strong>.</li>
-<li><strong>التَّرْتِيبُ</strong> — فَلَوِ اغْتَسَلَ بِنِيَّةِ الْوُضُوءِ فَلَا يَصِحُّ وُضُوءُهُ إِلَّا بِالتَّرْتِيبِ.</li>
-</ol>
-<div class="section-head">مسح الخفين</div>
-<p>يَجُوزُ الْمَسْحُ عَلَى الْخُفَّيْنِ فِي الْوُضُوءِ بَدَلًا عَنْ غَسْلِ الرِّجْلَيْنِ لِمُسَافِرٍ سَفَرَ قَصْرٍ ثَلَاثَةَ أَيَّامٍ وَلَيَالِيَهُنَّ، وَلِلْمُقِيمِ يَوْمًا وَلَيْلَةً.</p>
-<div class="section-head">سنن الوضوء</div>
-<p>مِنْ سُنَنِ الْوُضُوءِ: التَّسْمِيَةُ، وَالسِّوَاكُ، وَغَسْلُ الْكَفَّيْنِ مَعَ الْكُوعَيْنِ، وَالْمَضْمَضَةُ وَالاسْتِنْشَاقُ، وَمَسْحُ جَمِيعِ الرَّأْسِ، وَمَسْحُ الأُذُنَيْنِ، وَتَخْلِيلُ اللِّحْيَةِ وَالأَصَابِعِ، وَالتَّثْلِيثُ، وَالْوَلَاءُ، وَالدُّعَاءُ بَعْدَ الْوُضُوءِ.</p>`
-  },
-  {
-    id: 'nawaqid',
-    title: 'نَوَاقِضُ الْوُضُوء',
-    meta: 'صفحة ٣٢ — باب الوضوء',
-    content: `<p>نَوَاقِضُ الْوُضُوءِ أَرْبَعَةٌ:</p>
-<div class="section-head">الناقض الأول: الخروج</div>
-<p>خُرُوجُ شَيْءٍ غَيْرِ مَنِيِّهِ مِنْ فَرْجٍ أَوْ تَقْبٍ مِنْ تَحْتِ سُرَّةٍ — وَالْفَرْجُ مُنْسَدٌّ — عَيْنًا كَانَ أَوْ رِيحًا، رَطْبًا أَوْ جَافًّا، مُعْتَادًا أَوْ نَادِرًا. وَالْمَيِّتُ لَا تَنْتَقِضُ طَهَارَتُهُ بِخُرُوجِ شَيْءٍ مِنْهُ.</p>
-<div class="section-head">الناقض الثاني: زوال العقل</div>
-<p>زَوَالُ تَمْيِيزِ الْعَقْلِ بِسُكْرٍ أَوْ جُنُونٍ أَوْ إِغْمَاءٍ أَوْ نَوْمٍ إِلَّا نَوْمًا مُمَكِّنًا مَقْعَدَهُ. لَا يَنْتَقِضُ الْوُضُوءُ بِنُعَاسٍ وَلَا بِأَوَائِلِ نَشْوَةِ السُّكْرِ.</p>
-<div class="section-head">الناقض الثالث: مس الفرج</div>
-<p>مَسُّ فَرْجِ آدَمِيٍّ بِبَطْنِ الْكَفِّ — قُبُلًا كَانَ أَوْ دُبُرًا، سَلِيمًا أَوْ أَشَلَّ، مُتَّصِلًا أَوْ مُنْقَطِعًا، وَلَوْ لِمَيِّتٍ أَوْ صَغِيرٍ. وَلَا يَنْتَقِضُ الْوُضُوءُ بِمَسِّ الأُنْثَيَيْنِ وَبَاطِنِ الأَلْيَةِ.</p>
-<div class="section-head">الناقض الرابع: لمس المرأة</div>
-<p>تَلَاقِي بَشَرَتَيْ ذَكَرٍ وَأُنْثَى كَبِيرَيْنِ — وَلَوْ بِإِكْرَاهٍ أَوْ بِلَا شَهْوَةٍ. سَوَاءٌ اللَّامِسُ وَالْمَلْمُوسُ. لَكِنْ لَا يَنْتَقِضُ وُضُوءُ الْمَيِّتِ.</p>
-<div class="section-head">ما يندب منه الوضوء</div>
-<p>يُنْدَبُ الْوُضُوءُ مِنْ أُمُورٍ: مِنْهَا الْفَصْدُ وَالْحِجَامَةُ وَقَصُّ الظُّفُرِ وَقَصُّ الشَّارِبِ وَحَلْقُ الرَّأْسِ وَقَيْءٌ وَحَمْلُ مَيِّتٍ وَمَسُّهُ.</p>`
-  },
-  {
-    id: 'ghusl',
-    title: 'الْغُسْل — مُوجِبَاتُه وفُرُوضُه',
-    meta: 'صفحة ٣٥-٤٢ — باب الغسل',
-    content: `<p>الْغُسْلُ هُوَ لُغَةً سَيَلَانُ الْمَاءِ عَلَى شَيْءٍ وَشَرْعًا سَيَلَانُهُ عَلَى جَمِيعِ الْبَدَنِ بِنِيَّةٍ.</p>
-<div class="section-head">موجبات الغسل</div>
-<ol>
-<li><strong>خُرُوجُ الْمَنِيِّ</strong> — يُعْرَفُ الْمَنِيُّ بِتَدَفُّقِهِ أَوْ لَذَّةٍ أَوْ رِيحِ عَجِينٍ رَطْبًا وَبَيَاضٍ بَيْضٍ جَافًّا.</li>
-<li><strong>دُخُولُ حَشَفَةٍ فَرْجًا</strong> — وَلَوْ كَانَ أَحَدُهُمَا مُنْفَصِلًا أَوْ لِبَهِيمَةٍ أَوْ مَيِّتٍ.</li>
-<li><strong>الْحَيْضُ</strong> — هُوَ دَمٌ جِبِلَّةٌ يَخْرُجُ مِنْ أَقْصَى رَحِمِ الْمَرْأَةِ. أَقَلُّ سِنِّهِ تِسْعُ سِنِينَ. أَقَلُّهُ يَوْمٌ وَلَيْلَةٌ، وَغَالِبُهُ سِتٌّ أَوْ سَبْعٌ، وَأَكْثَرُهُ خَمْسَةَ عَشَرَ يَوْمًا.</li>
-<li><strong>النِّفَاسُ</strong> — هُوَ دَمٌ مُجْتَمِعٌ يَخْرُجُ بَعْدَ فَرَاغِ الرَّحِمِ مِنَ الْحَمْلِ. أَقَلُّهُ لَحْظَةٌ، وَأَكْثَرُهُ سِتُّونَ يَوْمًا.</li>
-<li><strong>الْوِلَادَةُ</strong> — وَلَوْ عَلَقَةً أَوْ مُضْغَةً.</li>
-<li><strong>مَوْتُ مُسْلِمٍ غَيْرِ شَهِيدٍ</strong> — أَمَّا الشَّهِيدُ فَيَحْرُمُ غُسْلُهُ.</li>
-</ol>
-<div class="section-head">فروض الغسل</div>
-<ol>
-<li><strong>النِّيَّةُ</strong> — تَكْفِي إِحْدَى هَذِهِ النِّيَّاتِ: نَوَيْتُ رَفْعَ الْجَنَابَةِ، نَوَيْتُ رَفْعَ الْحَيْضِ، نَوَيْتُ الطَّهَارَةَ عَنِ الْحَدَثِ، نَوَيْتُ أَدَاءَ الْغُسْلِ.</li>
-<li><strong>تَعْمِيمُ الْبَدَنِ بِالْمَاءِ</strong> — ظَاهِرًا وَبَاطِنًا وَإِنْ كَثُفَ وَبَشَرٌ ظَاهِرًا حَتَّى الأَظْفَارِ وَمَا تَحْتَهَا.</li>
-</ol>
-<div class="section-head">سنن الغسل</div>
-<p>مِنْ سُنَنِ الْغُسْلِ: أَنْ يَبُولَ مَنْ أَنْزَلَ قَبْلَ الْغُسْلِ، وَاسْتِقْبَالُ الْقِبْلَةِ، وَالتَّسْمِيَةُ، وَالسِّوَاكُ، وَالْمَضْمَضَةُ وَالاسْتِنْشَاقُ، وَوُضُوءٌ كَامِلٌ، وَإِفَاضَةُ الْمَاءِ عَلَى رَأْسِهِ ثَلَاثًا ثُمَّ عَلَى شِقِّهِ الأَيْمَنِ ثُمَّ الأَيْسَرِ، وَدَلْكُ الْبَدَنِ، وَالتَّرْتِيبُ، وَالْمُوَالَاةُ.</p>`
-  },
-  {
-    id: 'tayammum',
-    title: 'التَّيَمُّم',
-    meta: 'صفحة ٤٦-٥٢ — باب التيمم',
-    content: `<p>قَالَ اللهُ تَعَالَى: وَإِنْ كُنْتُمْ مَرْضَى أَوْ عَلَى سَفَرٍ أَوْ جَاءَ أَحَدٌ مِنْكُمْ مِنَ الْغَائِطِ أَوْ لَامَسْتُمُ النِّسَاءَ فَلَمْ تَجِدُوا مَاءً فَتَيَمَّمُوا صَعِيدًا طَيِّبًا فَامْسَحُوا بِوُجُوهِكُمْ وَأَيْدِيكُمْ.</p>
-<p>التَّيَمُّمُ لُغَةً الْقَصْدُ وَشَرْعًا إِيصَالُ التُّرَابِ إِلَى الْوَجْهِ وَالْيَدَيْنِ بِشُرُوطٍ مَخْصُوصَةٍ. وَشُرِعَ سَنَةَ سِتٍّ مِنَ الْهِجْرَةِ.</p>
-<div class="section-head">شروط التيمم</div>
-<ol>
-<li>الْعَجْزُ عَنِ اسْتِعْمَالِ الْمَاءِ.</li>
-<li>أَنْ يُزِيلَ النَّجَاسَةَ أَوَّلًا.</li>
-<li>أَنْ يَجْتَهِدَ فِي الْقِبْلَةِ قَبْلَهُ.</li>
-<li>أَنْ يَتَيَمَّمَ بَعْدَ دُخُولِ الْوَقْتِ.</li>
-<li>أَنْ يَكُونَ بِتُرَابٍ طَهُورٍ لَهُ غُبَارٌ.</li>
-<li>أَنْ يَكُونَ بِضَرْبَتَيْنِ: ضَرْبَةٌ لِلْوَجْهِ وَضَرْبَةٌ لِلْيَدَيْنِ.</li>
-</ol>
-<div class="section-head">أركان التيمم الخمسة</div>
-<ol>
-<li>نَقْلُ التُّرَابِ.</li>
-<li>النِّيَّةُ — نِيَّةُ اسْتِبَاحَةِ صَلَاةٍ مَفْرُوضَةٍ.</li>
-<li>مَسْحُ وَجْهِهِ.</li>
-<li>مَسْحُ يَدَيْهِ مَعَ مِرْفَقَيْهِ.</li>
-<li>التَّرْتِيبُ بَيْنَ الْوَجْهِ وَالْيَدَيْنِ.</li>
-</ol>
-<div class="section-head">مبطلات التيمم</div>
-<ol>
-<li>الْحَدَثُ.</li>
-<li>الرِّدَّةُ.</li>
-<li>تَحَقُّقُ الْبُرْءِ.</li>
-<li>تَوَهُّمُ مَاءٍ فِي غَيْرِ الصَّلَاةِ بِلَا مَانِعٍ مِنِ اسْتِعْمَالِهِ.</li>
-<li>وُجْدَانُ الْمَاءِ فِي صَلَاةٍ بِالتَّيَمُّمِ بِلَا مَانِعٍ مِنِ اسْتِعْمَالِهِ.</li>
-</ol>`
-  },
-  {
-    id: 'najasah',
-    title: 'النَّجَاسَة وأَنْوَاعُها',
-    meta: 'صفحة ٥٣-٦١ — باب النجاسة',
-    content: `<p>النَّجَاسَةُ لُغَةً كُلُّ مُسْتَقْذَرٍ وَشَرْعًا مُسْتَقْذَرٌ يَمْنَعُ صِحَّةَ الصَّلَاةِ حَيْثُ لَا مُرَخِّصَ. وَتَجِبُ إِزَالَتُهَا عِنْدَ الصَّلَاةِ وَاسْتِعْمَالِ شَيْءٍ فِيهِ النَّجَاسَةُ.</p>
-<div class="section-head">(أ) النجاسة من الجماد</div>
-<p><strong>١. كُلُّ مُسْكِرٍ مَائِعٍ</strong> — كَالْخَمْرِ وَهِيَ الْمُتَّخَذَةُ مِنَ الْعِنَبِ، وَنَبِيذٍ وَغَيْرِهِ.</p>
-<div class="section-head">(ب) النجاسة من الحيوان</div>
-<p><strong>٢. الْكَلْبُ وَالْخِنْزِيرُ</strong> — وَفِي حُكْمِهِمَا كُلُّ فَرْعٍ مِنْهُمَا. فَلَوْ نَزَا كَلْبٌ أَوْ خِنْزِيرٌ عَلَى آدَمِيَّةٍ فَوَلَدَتْ آدَمِيًّا فَهُوَ نَجِسٌ.</p>
-<div class="section-head">(ج) النجاسة من الفضلات</div>
-<ul>
-<li><strong>٣. الْمَيْتَةُ</strong> — لِغَيْرِ بَشَرٍ وَسَمَكٍ وَجَرَادٍ وَصَيْدٍ لَمْ تُدْرَكْ ذَكَاتُهُ.</li>
-<li><strong>٤. الرَّوْثُ وَالْبَوْلُ</strong> — وَلَوْ مِنْ مَأْكُولٍ حَيًّا.</li>
-<li><strong>٥. الْمَذْيُ وَالْوَدْيُ</strong>.</li>
-<li><strong>٦. الدَّمُ وَالصَّدِيدُ</strong> — أُسْتُثْنِيَ الْكَبِدُ وَالطِّحَالُ.</li>
-<li><strong>٧. قَيْءُ مَعِدَةٍ وَجِرَّةُ بَهِيمَةٍ</strong>.</li>
-<li><strong>٨. الْمِرَّةُ وَسُمُّ الْهَوَامِّ</strong>.</li>
-</ul>
-<div class="section-head">إزالة النجاسة</div>
-<p>تَطْهِيرُ النَّجَاسَةِ بِإِزَالَةِ عَيْنِهَا وَأَثَرِهَا. وَطُهِّرَ بِالْمَاءِ الطَّهُورِ. وَنَجَاسَةُ الْكَلْبِ تَطْهِيرُهَا بِسَبْعِ غَسَلَاتٍ إِحْدَاهُنَّ بِالتُّرَابِ.</p>`
-  },
-  {
-    id: 'awqat',
-    title: 'أَوْقَاتُ الصَّلَاة',
-    meta: 'صفحة ٦٨-٧٠ — باب الصلاة',
-    content: `<p>لِكُلِّ صَلَاةٍ وَقْتٌ أَوَّلُ وَوَقْتٌ مُخْتَارٌ وَوَقْتُ ضَرُورَةٍ.</p>
-<div class="section-head">وقت الظهر</div>
-<p>مِنَ الزَّوَالِ إِلَى أَنْ يَصِيرَ ظِلُّ كُلِّ شَيْءٍ مِثْلَهُ سِوَى ظِلِّ الزَّوَالِ.</p>
-<div class="section-head">وقت العصر</div>
-<p>مِنْ مَصِيرِ الظِّلِّ مِثْلَيْهِ إِلَى غُرُوبِ الشَّمْسِ. وَوَقْتُ الاخْتِيَارِ إِلَى اصْفِرَارِ الشَّمْسِ.</p>
-<div class="section-head">وقت المغرب</div>
-<p>مِنَ الْغُرُوبِ إِلَى مَغِيبِ الشَّفَقِ الأَحْمَرِ.</p>
-<div class="section-head">وقت العشاء</div>
-<p>مِنْ مَغِيبِ الشَّفَقِ الأَحْمَرِ إِلَى الْفَجْرِ الصَّادِقِ. وَوَقْتُ الاخْتِيَارِ إِلَى ثُلُثِ اللَّيْلِ.</p>
-<div class="section-head">وقت الصبح</div>
-<p>مِنَ الْفَجْرِ الصَّادِقِ إِلَى طُلُوعِ الشَّمْسِ. وَوَقْتُ الاخْتِيَارِ أَوَّلُهُ.</p>
-<div class="section-head">ستر العورة</div>
-<p>عَوْرَةُ الرَّجُلِ مَا بَيْنَ السُّرَّةِ وَالرُّكْبَةِ. وَعَوْرَةُ الْمَرْأَةِ الْحُرَّةِ جَمِيعُ بَدَنِهَا إِلَّا الْوَجْهَ وَالْكَفَّيْنِ فِي الصَّلَاةِ. وَعَوْرَةُ الأَمَةِ كَعَوْرَةِ الرَّجُلِ.</p>
-<div class="section-head">أوقات تحرم فيها الصلاة</div>
-<p>خَمْسَةُ أَوْقَاتٍ يُحَرَّمُ فِيهَا ابْتِدَاءُ النَّفْلِ: بَعْدَ صَلَاةِ الصُّبْحِ حَتَّى تَرْتَفِعَ الشَّمْسُ، وَعِنْدَ قِيَامِ الشَّمْسِ حَتَّى تَزُولَ، وَبَعْدَ الْعَصْرِ حَتَّى تَغْرُبَ، وَعِنْدَ الْغُرُوبِ حَتَّى يَتِمَّ، وَعِنْدَ الطُّلُوعِ حَتَّى تَرْتَفِعَ.</p>`
-  },
-  {
-    id: 'adhan',
-    title: 'الأَذَان والإِقَامَة',
-    meta: 'صفحة ٧٣-٧٨ — باب الأذان',
-    content: `<p>الأَذَانُ إِعْلَامٌ بِدُخُولِ وَقْتِ الصَّلَاةِ بِأَلْفَاظٍ مَخْصُوصَةٍ. وَالإِقَامَةُ إِعْلَامٌ بِالشُّرُوعِ فِيهَا.</p>
-<div class="section-head">فضل الأذان</div>
-<p>قَالَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: لَوْ يَعْلَمُ النَّاسُ مَا فِي النِّدَاءِ وَالصَّفِّ الأَوَّلِ ثُمَّ لَمْ يَجِدُوا إِلَّا أَنْ يَسْتَهِمُوا عَلَيْهِ لَاسْتَهَمُوا.</p>
-<div class="section-head">شروط الأذان والإقامة</div>
-<ol>
-<li>الإِسْلَامُ.</li>
-<li>الذُّكُورَةُ — فَلَا يَصِحُّ أَذَانُ الْمَرْأَةِ وَالْخُنْثَى لِلرِّجَالِ.</li>
-<li>الْعَقْلُ.</li>
-<li>النِّيَّةُ.</li>
-<li>الصَّوْتُ الْمُسْمِعُ.</li>
-<li>التَّرْتِيبُ.</li>
-<li>الْمُوَالَاةُ.</li>
-<li>دُخُولُ الْوَقْتِ — فَلَا يَصِحُّ الأَذَانُ قَبْلَ الْوَقْتِ إِلَّا لِلصُّبْحِ.</li>
-</ol>
-<div class="section-head">سنن الأذان والإقامة</div>
-<p>مِنْ سُنَنِ الأَذَانِ: الطَّهَارَةُ، وَاسْتِقْبَالُ الْقِبْلَةِ، وَالْوُقُوفُ، وَوَضْعُ الإِصْبَعَيْنِ فِي الأُذُنَيْنِ، وَالتَّرْتِيلُ فِي الأَذَانِ وَالْحَدْرُ فِي الإِقَامَةِ.</p>
-<div class="section-head">آداب سماعهما</div>
-<p>يُسَنُّ لِمَنْ سَمِعَ الأَذَانَ أَنْ يُجِيبَ الْمُؤَذِّنَ بِمِثْلِ مَا يَقُولُ إِلَّا فِي الْحَيْعَلَتَيْنِ فَيَقُولُ: لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ.</p>`
-  },
-  {
-    id: 'arkan-salah',
-    title: 'أَرْكَانُ الصَّلَاة',
-    meta: 'صفحة ٧٩-٨٧ — باب الصلاة',
-    content: `<p>أَرْكَانُ الصَّلَاةِ سَبْعَةَ عَشَرَ رُكْنًا:</p>
-<div class="section-head">الأركان</div>
-<ol>
-<li><strong>النِّيَّةُ</strong> — وَيَجِبُ اقْتِرَانُهَا بِتَكْبِيرَةِ الإِحْرَامِ.</li>
-<li><strong>تَكْبِيرَةُ الإِحْرَامِ</strong> — وَأَقَلُّهَا: اللهُ أَكْبَرُ.</li>
-<li><strong>الْقِيَامُ لِلْقَادِرِ فِي فَرْضٍ</strong>.</li>
-<li><strong>قِرَاءَةُ الْفَاتِحَةِ</strong> — فِي كُلِّ رَكْعَةٍ.</li>
-<li><strong>الرُّكُوعُ</strong> — وَأَقَلُّهُ أَنْ يَنْحَنِيَ حَتَّى تَبْلُغَ رَاحَتَاهُ رُكْبَتَيْهِ.</li>
-<li><strong>الطُّمَأْنِينَةُ فِي الرُّكُوعِ</strong>.</li>
-<li><strong>الاعْتِدَالُ</strong> — الرَّفْعُ مِنَ الرُّكُوعِ.</li>
-<li><strong>الطُّمَأْنِينَةُ فِي الاعْتِدَالِ</strong>.</li>
-<li><strong>السُّجُودُ مَرَّتَيْنِ</strong> — وَأَقَلُّهُ وَضْعُ بَعْضِ الْجَبْهَةِ عَلَى مَا يُصَلَّى عَلَيْهِ.</li>
-<li><strong>الطُّمَأْنِينَةُ فِي السُّجُودِ</strong>.</li>
-<li><strong>الْجُلُوسُ بَيْنَ السَّجْدَتَيْنِ</strong>.</li>
-<li><strong>الطُّمَأْنِينَةُ فِيهِ</strong>.</li>
-<li><strong>التَّشَهُّدُ الأَخِيرُ</strong>.</li>
-<li><strong>الصَّلَاةُ عَلَى النَّبِيِّ ﷺ بَعْدَهُ</strong>.</li>
-<li><strong>الْقُعُودُ لِلتَّشَهُّدِ وَالصَّلَاةِ</strong>.</li>
-<li><strong>التَّسْلِيمَةُ الأُولَى</strong> — وَأَقَلُّهَا: السَّلَامُ عَلَيْكُمْ.</li>
-<li><strong>التَّرْتِيبُ</strong>.</li>
-</ol>
-<div class="section-head">الطمأنينة</div>
-<p>الطُّمَأْنِينَةُ هِيَ السُّكُونُ وَإِنْ قَلَّ بَعْدَ الْحَرَكَةِ. وَهِيَ رُكْنٌ فِي الرُّكُوعِ وَالاعْتِدَالِ وَالسُّجُودِ وَالْجُلُوسِ بَيْنَ السَّجْدَتَيْنِ.</p>`
-  },
-];
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-4">
+                <button onclick="openCart()" class="relative p-2.5 rounded-full bg-royal-burgundy border border-royal-gold/40 hover:border-royal-gold text-royal-gold transition-all">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-royal-gold text-royal-dark font-bold text-xs rounded-full flex items-center justify-center">0</span>
+                </button>
+                <a href="#reservation" class="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-royal-gold to-royal-bronze text-royal-dark font-serif font-bold text-sm tracking-wider uppercase rounded-full hover:shadow-lg hover:shadow-royal-gold/20 transition-all">
+                    <i class="fa-regular fa-calendar-days"></i> Reserve Table
+                </a>
+                <button onclick="toggleMobileMenu()" class="lg:hidden text-royal-gold text-2xl p-1">
+                    <i class="fa-solid fa-bars" id="mobile-menu-icon"></i>
+                </button>
+            </div>
+        </div>
 
-const tocData = [
-  { section: 'الأحكام الشرعية', items: [
-    { label: 'الأحكام الشرعية', page: 'ahkam', num: '١٤' },
-  ]},
-  { section: 'باب الصلاة', items: [
-    { label: 'وجوب الصلاة', page: 'salah-wujub', num: '١٥' },
-    { label: 'شروط الصلاة', page: 'shurut-salah', num: '١٧' },
-    { label: 'أوقات الصلاة وستر العورة', page: 'awqat', num: '٦٧' },
-    { label: 'الأذان والإقامة', page: 'adhan', num: '٧٣' },
-    { label: 'أركان الصلاة', page: 'arkan-salah', num: '٧٩' },
-  ]},
-  { section: 'باب الطهارة', items: [
-    { label: 'الطهارة', page: 'taharah', num: '١٨' },
-    { label: 'الوضوء وفروضه وسننه', page: 'wudu-furood', num: '١٨' },
-    { label: 'نواقض الوضوء', page: 'nawaqid', num: '٣٢' },
-    { label: 'الغسل وموجباته', page: 'ghusl', num: '٣٥' },
-    { label: 'التيمم', page: 'tayammum', num: '٤٦' },
-    { label: 'النجاسة وأنواعها', page: 'najasah', num: '٥٣' },
-  ]},
-];
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-royal-burgundy/95 border-b border-royal-gold/30 px-6 py-6 backdrop-blur-xl">
+            <nav class="flex flex-col gap-4 font-serif tracking-wider text-center">
+                <a href="#home" onclick="toggleMobileMenu()" class="text-royal-gold py-2">Home</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="text-royal-champagne py-2">About</a>
+                <a href="#menu" onclick="toggleMobileMenu()" class="text-royal-champagne py-2">Grand Menu</a>
+                <a href="#experiences" onclick="toggleMobileMenu()" class="text-royal-champagne py-2">VIP Dining</a>
+                <a href="#gallery" onclick="toggleMobileMenu()" class="text-royal-champagne py-2">Gallery</a>
+                <a href="#reservation" onclick="toggleMobileMenu()" class="inline-block mt-2 py-3 px-6 bg-royal-gold text-royal-dark font-bold uppercase rounded-full">Reserve Table</a>
+            </nav>
+        </div>
+    </header>
 
-let currentPage = null;
-let allItems = tocData.flatMap(s => s.items);
-let filteredItems = [...allItems];
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+        <!-- Background Overlay & Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=85" alt="Luxury Restaurant" class="w-full h-full object-cover scale-105 animate-pulse duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-t from-royal-dark via-royal-dark/70 to-royal-dark/40"></div>
+        </div>
 
-function buildToc(items) {
-  const list = document.getElementById('toc-list');
-  if (items === null) {
-    list.innerHTML = tocData.map(section => `
-      <div class="toc-section">
-        <div class="toc-section-title">${section.section}</div>
-        ${section.items.map(item => `
-          <button class="toc-item${currentPage === item.page ? ' active' : ''}" onclick="loadPage('${item.page}')">
-            ${item.label}
-            <span class="page-num">ص${item.num}</span>
-          </button>
-        `).join('')}
-      </div>
-    `).join('');
-  } else {
-    list.innerHTML = items.map(item => `
-      <button class="toc-item${currentPage === item.page ? ' active' : ''}" onclick="loadPage('${item.page}')">
-        ${item.label}
-        <span class="page-num">ص${item.num}</span>
-      </button>
-    `).join('') || '<div style="padding:14px;color:#8a6a4a;font-size:13px;text-align:center;">لا نتائج</div>';
-  }
-}
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center py-20" data-aos="fade-up" data-aos-duration="1000">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-royal-gold/40 bg-royal-burgundy/40 backdrop-blur-md mb-6">
+                <i class="fa-solid fa-star text-royal-gold text-xs"></i>
+                <span class="text-xs uppercase tracking-[0.3em] font-serif text-royal-gold">Michelin Star Experience</span>
+                <i class="fa-solid fa-star text-royal-gold text-xs"></i>
+            </div>
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-wider uppercase mb-6 text-white leading-tight">
+                Where Culinary Art <br><span class="gold-gradient-text">Meets Royal Grandeur</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-royal-champagne/80 font-sans mb-10 leading-relaxed">
+                Indulge in authentic Malabar heritage delicacies, international fine dining, and bespoke royal feasts curated by world-renowned master chefs.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#menu" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-royal-gold to-royal-bronze text-royal-dark font-serif font-bold tracking-widest uppercase rounded-full royal-glow hover:scale-105 transition-all text-center">
+                    Explore Grand Menu
+                </a>
+                <a href="#reservation" class="w-full sm:w-auto px-8 py-4 border border-royal-gold text-royal-gold font-serif font-bold tracking-widest uppercase rounded-full hover:bg-royal-gold/10 transition-all text-center">
+                    Book VIP Table
+                </a>
+            </div>
 
-function filterToc(val) {
-  if (!val.trim()) { filteredItems = [...allItems]; buildToc(null); return; }
-  filteredItems = allItems.filter(i => i.label.includes(val.trim()));
-  buildToc(filteredItems);
-}
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-12 border-t border-royal-gold/20">
+                <div class="text-center">
+                    <span class="block font-serif text-3xl sm:text-4xl font-bold text-royal-gold">25+</span>
+                    <span class="text-xs tracking-widest uppercase text-royal-champagne/60 mt-1 block">Master Chefs</span>
+                </div>
+                <div class="text-center">
+                    <span class="block font-serif text-3xl sm:text-4xl font-bold text-royal-gold">150+</span>
+                    <span class="text-xs tracking-widest uppercase text-royal-champagne/60 mt-1 block">Royal Recipes</span>
+                </div>
+                <div class="text-center">
+                    <span class="block font-serif text-3xl sm:text-4xl font-bold text-royal-gold">5 Star</span>
+                    <span class="text-xs tracking-widest uppercase text-royal-champagne/60 mt-1 block">Hospitality</span>
+                </div>
+                <div class="text-center">
+                    <span class="block font-serif text-3xl sm:text-4xl font-bold text-royal-gold">100%</span>
+                    <span class="text-xs tracking-widest uppercase text-royal-champagne/60 mt-1 block">Halal Certified</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-function wrapWords(html) {
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  function processNode(node) {
-    if (node.nodeType === 3) {
-      const words = node.textContent.split(/(\s+)/);
-      const frag = document.createDocumentFragment();
-      words.forEach(w => {
-        if (/\s+/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
-        const clean = w.replace(/[،؛:.،\(\)]/g, '');
-        const span = document.createElement('span');
-        span.className = 'ar-word' + (glossary[clean] ? ' glossed' : '');
-        if (glossary[clean]) { span.dataset.key = clean; }
-        span.textContent = w;
-        frag.appendChild(span);
-      });
-      node.parentNode.replaceChild(frag, node);
-    } else if (node.nodeType === 1 && !['STRONG','EM'].includes(node.tagName)) {
-      Array.from(node.childNodes).forEach(processNode);
-    }
-  }
-  Array.from(div.childNodes).forEach(processNode);
-  return div.innerHTML;
-}
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-royal-emerald/40 relative border-y border-royal-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <span class="text-xs font-serif uppercase tracking-[0.3em] text-royal-gold block mb-3">Legacy of Elegance</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold uppercase mb-6 text-white leading-snug">
+                        Crafting Unforgettable <span class="gold-gradient-text">Dining Memories</span>
+                    </h2>
+                    <p class="text-royal-champagne/80 leading-relaxed mb-6">
+                        Hotel Royal Palace stands as a beacon of unmatched culinary luxury. Founded with a vision to preserve the rich regal heritage of Malabar spice routes while embracing global fine-dining standards, every dish we serve tells a story of passion, precision, and royalty.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-award text-royal-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Award Winning</h4>
+                                <p class="text-xs text-royal-champagne/70">Recognized globally for finest cuisine.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-utensils text-royal-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Organic Spices</h4>
+                                <p class="text-xs text-royal-champagne/70">Directly sourced exotic Malabar spices.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#menu" class="inline-flex items-center gap-2 text-royal-gold font-serif font-bold tracking-wider uppercase hover:text-white transition-colors">
+                        View Chef's Special <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
+                <div class="relative" data-aos="fade-left">
+                    <div class="relative z-10 rounded-2xl overflow-hidden border-2 border-royal-gold shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=85" alt="Restaurant Interior" class="w-full h-[450px] object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-royal-gold/10 rounded-full blur-2xl z-0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-function loadPage(id) {
-  const page = pages.find(p => p.id === id);
-  if (!page) return;
-  currentPage = id;
-  buildToc(filteredItems.length < allItems.length ? filteredItems : null);
-  const idx = allItems.findIndex(i => i.page === id);
-  const content = document.getElementById('content');
-  content.innerHTML = `
-    <div id="page-header">
-      <div id="page-title">${page.title}</div>
-      <div id="page-meta">${page.meta}</div>
+    <!-- Grand Menu Section -->
+    <section id="menu" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+            <span class="text-xs font-serif uppercase tracking-[0.3em] text-royal-gold block mb-3">Gastronomic Masterpieces</span>
+            <h2 class="font-serif text-4xl sm:text-5xl font-bold uppercase mb-4 text-white">The Royal Grand Menu</h2>
+            <p class="text-royal-champagne/80">Select from our exquisite categories crafted with precision by master chefs.</p>
+            
+            <!-- Category Filter Buttons -->
+            <div id="category-filters" class="flex flex-wrap justify-center gap-3 mt-8">
+                <button onclick="filterMenu('all')" class="cat-btn px-6 py-2.5 rounded-full border border-royal-gold bg-royal-gold text-royal-dark font-serif font-bold text-sm tracking-wider uppercase transition-all">All Items</button>
+                <button onclick="filterMenu('breads')" class="cat-btn px-6 py-2.5 rounded-full border border-royal-gold/40 text-royal-champagne font-serif text-sm tracking-wider uppercase hover:border-royal-gold transition-all">Breads & Rice</button>
+                <button onclick="filterMenu('curries')" class="cat-btn px-6 py-2.5 rounded-full border border-royal-gold/40 text-royal-champagne font-serif text-sm tracking-wider uppercase hover:border-royal-gold transition-all">Roasts & Curries</button>
+                <button onclick="filterMenu('biriyani')" class="cat-btn px-6 py-2.5 rounded-full border border-royal-gold/40 text-royal-champagne font-serif text-sm tracking-wider uppercase hover:border-royal-gold transition-all">Royal Biriyani</button>
+                <button onclick="filterMenu('combos')" class="cat-btn px-6 py-2.5 rounded-full border border-royal-gold/40 text-royal-champagne font-serif text-sm tracking-wider uppercase hover:border-royal-gold transition-all">Grand Combos</button>
+            </div>
+        </div>
+
+        <!-- Menu Items Grid -->
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Item 1 -->
+            <div class="menu-card rounded-2xl bg-royal-burgundy/40 border border-royal-gold/30 p-6 flex flex-col justify-between hover:border-royal-gold transition-all duration-300 group" data-category="breads">
+                <div>
+                    <div class="relative h-52 rounded-xl overflow-hidden mb-6 border border-royal-gold/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyv-HM1oo51zsCJh4SBftL55npA7IQFiKQcYmZjMsEqQ&s=10" alt="Imperial Porotta" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-royal-gold text-royal-dark font-bold text-xs uppercase rounded-full">Best Seller</span>
+                    </div>
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Imperial Malabar Porotta</h3>
+                        <span class="font-serif text-xl font-bold text-royal-gold">₹15</span>
+                    </div>
+                    <p class="text-sm text-royal-champagne/70 mb-6">Masterfully crafted multi-layered flaky flatbread, prepared in pure organic butter.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-gold/20">
+                    <span class="text-xs text-emerald-400 font-semibold"><i class="fa-solid fa-leaf"></i> 100% Vegetarian</span>
+                    <button onclick="addToCart('Imperial Malabar Porotta', 15, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyv-HM1oo51zsCJh4SBftL55npA7IQFiKQcYmZjMsEqQ&s=10')" class="px-4 py-2 bg-royal-gold text-royal-dark font-serif font-bold text-xs uppercase rounded-full hover:bg-white transition-colors">
+                        <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="menu-card rounded-2xl bg-royal-burgundy/40 border border-royal-gold/30 p-6 flex flex-col justify-between hover:border-royal-gold transition-all duration-300 group" data-category="breads">
+                <div>
+                    <div class="relative h-52 rounded-xl overflow-hidden mb-6 border border-royal-gold/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPd59EnU0BjMuHZAIWpZXvtfgneoceXmb9D0noSMwdiQ&s=10" alt="Ghee Rice" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-royal-burgundy border border-royal-gold text-royal-gold font-bold text-xs uppercase rounded-full">Chef Choice</span>
+                    </div>
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Maharaja Ghee Rice</h3>
+                        <span class="font-serif text-xl font-bold text-royal-gold">₹120</span>
+                    </div>
+                    <p class="text-sm text-royal-champagne/70 mb-6">Aromatic aged Kaima rice cooked in unadulterated ghee, garnished with cashews & raisins.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-gold/20">
+                    <span class="text-xs text-emerald-400 font-semibold"><i class="fa-solid fa-leaf"></i> 100% Vegetarian</span>
+                    <button onclick="addToCart('Maharaja Ghee Rice', 120, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPd59EnU0BjMuHZAIWpZXvtfgneoceXmb9D0noSMwdiQ&s=10')" class="px-4 py-2 bg-royal-gold text-royal-dark font-serif font-bold text-xs uppercase rounded-full hover:bg-white transition-colors">
+                        <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="menu-card rounded-2xl bg-royal-burgundy/40 border border-royal-gold/30 p-6 flex flex-col justify-between hover:border-royal-gold transition-all duration-300 group" data-category="curries">
+                <div>
+                    <div class="relative h-52 rounded-xl overflow-hidden mb-6 border border-royal-gold/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxgl07Ln46vABjX8XJqdhHTqxj271V7HT5aOb53FYMg&s=10" alt="Beef Roast" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-red-600 text-white font-bold text-xs uppercase rounded-full">Signature</span>
+                    </div>
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Royal Signature Beef Roast</h3>
+                        <span class="font-serif text-xl font-bold text-royal-gold">₹190</span>
+                    </div>
+                    <p class="text-sm text-royal-champagne/70 mb-6">Slow-braised tender medallions tossed in a rich melange of roasted coconut slivers and spices.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-gold/20">
+                    <span class="text-xs text-red-400 font-semibold"><i class="fa-solid fa-fire"></i> Spicy</span>
+                    <button onclick="addToCart('Royal Signature Beef Roast', 190, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxgl07Ln46vABjX8XJqdhHTqxj271V7HT5aOb53FYMg&s=10')" class="px-4 py-2 bg-royal-gold text-royal-dark font-serif font-bold text-xs uppercase rounded-full hover:bg-white transition-colors">
+                        <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="menu-card rounded-2xl bg-royal-burgundy/40 border border-royal-gold/30 p-6 flex flex-col justify-between hover:border-royal-gold transition-all duration-300 group" data-category="curries">
+                <div>
+                    <div class="relative h-52 rounded-xl overflow-hidden mb-6 border border-royal-gold/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUSVS6aPrEvXrB4h3yCOouHfRffEh9imCdjTOavvZyng&s=10" alt="Chicken Fry" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Nawab's Special Chicken Fry</h3>
+                        <span class="font-serif text-xl font-bold text-royal-gold">₹210</span>
+                    </div>
+                    <p class="text-sm text-royal-champagne/70 mb-6">Deep-crisped chicken seasoned with royal red chili paste, garlic, and fresh curry leaves.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-gold/20">
+                    <span class="text-xs text-red-400 font-semibold"><i class="fa-solid fa-fire"></i> Spicy</span>
+                    <button onclick="addToCart('Nawab Special Chicken Fry', 210, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUSVS6aPrEvXrB4h3yCOouHfRffEh9imCdjTOavvZyng&s=10')" class="px-4 py-2 bg-royal-gold text-royal-dark font-serif font-bold text-xs uppercase rounded-full hover:bg-white transition-colors">
+                        <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="menu-card rounded-2xl bg-royal-burgundy/40 border border-royal-gold/30 p-6 flex flex-col justify-between hover:border-royal-gold transition-all duration-300 group" data-category="biriyani">
+                <div>
+                    <div class="relative h-52 rounded-xl overflow-hidden mb-6 border border-royal-gold/20">
+                        <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=300&q=80" alt="Biriyani" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-royal-gold text-royal-dark font-bold text-xs uppercase rounded-full">Top Rated</span>
+                    </div>
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Thalassery Royal Chicken Biryani</h3>
+                        <span class="font-serif text-xl font-bold text-royal-gold">₹220</span>
+                    </div>
+                    <p class="text-sm text-royal-champagne/70 mb-6">Authentic Dum Biryani made with aromatic Kaima rice, tender chicken, ghee, and fried shallots.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-gold/20">
+                    <span class="text-xs text-amber-400 font-semibold"><i class="fa-solid fa-star"></i> 4.9 Rating</span>
+                    <button onclick="addToCart('Thalassery Royal Chicken Biryani', 220, 'https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=300&q=80')" class="px-4 py-2 bg-royal-gold text-royal-dark font-serif font-bold text-xs uppercase rounded-full hover:bg-white transition-colors">
+                        <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="menu-card rounded-2xl bg-royal-burgundy/40 border border-royal-gold/30 p-6 flex flex-col justify-between hover:border-royal-gold transition-all duration-300 group" data-category="combos">
+                <div>
+                    <div class="relative h-52 rounded-xl overflow-hidden mb-6 border border-royal-gold/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4Xr7uhPvfHGyx90NmXu7QnZEoxqcymAkV96b-31w-eg&s=10" alt="Combo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-royal-gold text-royal-dark font-bold text-xs uppercase rounded-full">Value Pack</span>
+                    </div>
+                    <div class="flex items-start justify-between mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">The Royal Feast Combo</h3>
+                        <span class="font-serif text-xl font-bold text-royal-gold">₹230</span>
+                    </div>
+                    <p class="text-sm text-royal-champagne/70 mb-6">3 Pieces of hot layered Porottas served alongside our signature Royal Beef Roast Gravy.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-gold/20">
+                    <span class="text-xs text-amber-400 font-semibold"><i class="fa-solid fa-tag"></i> Save 15%</span>
+                    <button onclick="addToCart('The Royal Feast Combo', 230, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4Xr7uhPvfHGyx90NmXu7QnZEoxqcymAkV96b-31w-eg&s=10')" class="px-4 py-2 bg-royal-gold text-royal-dark font-serif font-bold text-xs uppercase rounded-full hover:bg-white transition-colors">
+                        <i class="fa-solid fa-plus mr-1"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table Reservation Section -->
+    <section id="reservation" class="py-24 bg-royal-burgundy/30 border-t border-royal-gold/20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-xs font-serif uppercase tracking-[0.3em] text-royal-gold block mb-3">VIP Hospitality</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold uppercase mb-4 text-white">Reserve Your Table</h2>
+                <p class="text-royal-champagne/80">Experience candlelight dinner, private family suites, or royal celebrations.</p>
+            </div>
+
+            <form id="reservation-form" onsubmit="handleReservation(event)" class="bg-royal-dark/90 border border-royal-gold/40 p-8 sm:p-12 rounded-3xl royal-glow backdrop-blur-md" data-aos="zoom-in">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block font-serif text-sm text-royal-gold uppercase tracking-wider mb-2">Full Name</label>
+                        <input type="text" id="res-name" required class="w-full bg-royal-burgundy/50 border border-royal-gold/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-royal-gold" placeholder="Enter your full name">
+                    </div>
+                    <div>
+                        <label class="block font-serif text-sm text-royal-gold uppercase tracking-wider mb-2">Phone Number</label>
+                        <input type="tel" id="res-phone" required class="w-full bg-royal-burgundy/50 border border-royal-gold/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-royal-gold" placeholder="Enter phone number">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label class="block font-serif text-sm text-royal-gold uppercase tracking-wider mb-2">Date</label>
+                        <input type="date" id="res-date" required class="w-full bg-royal-burgundy/50 border border-royal-gold/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-royal-gold">
+                    </div>
+                    <div>
+                        <label class="block font-serif text-sm text-royal-gold uppercase tracking-wider mb-2">Time Slot</label>
+                        <select id="res-time" required class="w-full bg-royal-burgundy/50 border border-royal-gold/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-royal-gold">
+                            <option value="">Select Time</option>
+                            <option value="12:00 PM">12:00 PM - Lunch</option>
+                            <option value="02:00 PM">02:00 PM - Lunch</option>
+                            <option value="07:00 PM">07:00 PM - Dinner</option>
+                            <option value="09:00 PM">09:00 PM - Candlelight</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-serif text-sm text-royal-gold uppercase tracking-wider mb-2">Guests</label>
+                        <select id="res-guests" required class="w-full bg-royal-burgundy/50 border border-royal-gold/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-royal-gold">
+                            <option value="1 Person">1 Person</option>
+                            <option value="2 Persons" selected>2 Persons (Couple)</option>
+                            <option value="4 Persons">4 Persons (Family)</option>
+                            <option value="6+ Persons">VIP Group (6+)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <label class="block font-serif text-sm text-royal-gold uppercase tracking-wider mb-2">Special Requests / Occasion</label>
+                    <textarea id="res-notes" rows="3" class="w-full bg-royal-burgundy/50 border border-royal-gold/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-royal-gold" placeholder="Anniversary decoration, birthday cake, private room..."></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-royal-gold to-royal-bronze text-royal-dark font-serif font-bold text-base tracking-widest uppercase rounded-xl hover:shadow-lg hover:shadow-royal-gold/30 transition-all">
+                    Confirm Royal Reservation
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+            <span class="text-xs font-serif uppercase tracking-[0.3em] text-royal-gold block mb-3">Visual Splendor</span>
+            <h2 class="font-serif text-4xl sm:text-5xl font-bold uppercase mb-4 text-white">Palace Gallery</h2>
+            <p class="text-royal-champagne/80">A glimpse into our luxurious interiors and master culinary creations.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="relative h-72 rounded-2xl overflow-hidden border border-royal-gold/30 group">
+                <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80" alt="Interior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-royal-dark/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <span class="font-serif text-royal-gold text-lg font-bold">Royal Dining Hall</span>
+                </div>
+            </div>
+            <div class="relative h-72 rounded-2xl overflow-hidden border border-royal-gold/30 group">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Dish" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-royal-dark/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <span class="font-serif text-royal-gold text-lg font-bold">Master Chef Special</span>
+                </div>
+            </div>
+            <div class="relative h-72 rounded-2xl overflow-hidden border border-royal-gold/30 group">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Ambience" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-royal-dark/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <span class="font-serif text-royal-gold text-lg font-bold">Candlelight Setup</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot Assistant Widget -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="toggleChat()" id="chat-toggle-btn" class="w-14 h-14 rounded-full bg-gradient-to-r from-royal-gold to-royal-bronze text-royal-dark shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition-all">
+            <i class="fa-solid fa-comment-dots"></i>
+        </button>
+        
+        <div id="chat-box" class="hidden absolute bottom-20 right-0 w-80 sm:w-96 bg-royal-dark border-2 border-royal-gold rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            <div class="bg-royal-burgundy p-4 border-b border-royal-gold/40 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-royal-gold text-royal-dark flex items-center justify-center font-bold text-sm">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-sm font-bold text-white">Royal Concierge</h4>
+                        <span class="text-[10px] text-emerald-400">● Online</span>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-royal-gold text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="chat-messages" class="p-4 h-64 overflow-y-auto flex flex-col gap-3 text-sm">
+                <div class="bg-royal-burgundy/60 border border-royal-gold/20 p-3 rounded-xl max-w-[80%] text-royal-champagne">
+                    Welcome to Hotel Royal Palace! How may I assist your culinary journey today?
+                </div>
+            </div>
+            <div class="p-3 bg-royal-burgundy/40 border-t border-royal-gold/20 flex gap-2">
+                <input type="text" id="chat-input" onkeypress="handleChatKey(event)" placeholder="Ask about menu, reservations..." class="flex-grow bg-royal-dark border border-royal-gold/30 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-royal-gold">
+                <button onclick="sendChatMessage()" class="px-4 py-2 bg-royal-gold text-royal-dark font-bold text-xs rounded-lg uppercase">Send</button>
+            </div>
+        </div>
     </div>
-    <div id="page-text">${wrapWords(page.content)}</div>
-    <div id="glossary-key">
-      <strong>تلميح:</strong> الكلمات ذات الخط المنقط باللون البني تحتوي على معنى — ضع المؤشر عليها لتظهر الترجمة الإنجليزية.
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-50 bg-royal-dark/80 backdrop-blur-md hidden flex justify-end">
+        <div class="w-full max-w-md bg-royal-dark border-l border-royal-gold/30 h-full flex flex-col p-6 shadow-2xl">
+            <div class="flex items-center justify-between pb-6 border-b border-royal-gold/20">
+                <h3 class="font-serif text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-royal-gold"></i> Your Royal Cart
+                </h3>
+                <button onclick="openCart()" class="text-royal-gold text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="cart-items-container" class="flex-grow overflow-y-auto py-6 flex flex-col gap-4">
+                <!-- Cart Items will be injected here -->
+                <p id="empty-cart-msg" class="text-center text-royal-champagne/60 my-auto font-serif">Your cart is currently empty.</p>
+            </div>
+            <div class="pt-6 border-t border-royal-gold/20">
+                <div class="flex items-center justify-between mb-4 font-serif text-lg">
+                    <span class="text-white">Total Amount:</span>
+                    <span id="cart-total" class="text-royal-gold font-bold">₹0</span>
+                </div>
+                <button onclick="checkoutCart()" class="w-full py-4 bg-gradient-to-r from-royal-gold to-royal-bronze text-royal-dark font-serif font-bold text-sm tracking-widest uppercase rounded-xl hover:shadow-lg hover:shadow-royal-gold/30 transition-all">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
     </div>
-    <div id="nav-bar">
-      <button class="nav-btn" onclick="navigate(-1)" ${idx <= 0 ? 'disabled' : ''}>→ السابق</button>
-      <span id="page-counter">${idx + 1} / ${allItems.length}</span>
-      <button class="nav-btn" onclick="navigate(1)" ${idx >= allItems.length - 1 ? 'disabled' : ''}>التالي ←</button>
-    </div>
-  `;
-  document.getElementById('page-text').addEventListener('mouseover', showTip);
-  document.getElementById('page-text').addEventListener('mousemove', moveTip);
-  document.getElementById('page-text').addEventListener('mouseout', hideTip);
-  content.scrollTop = 0;
-  window.scrollTo(0, 0);
-}
 
-function navigate(dir) {
-  const idx = allItems.findIndex(i => i.page === currentPage);
-  const next = allItems[idx + dir];
-  if (next) loadPage(next.page);
-}
+    <!-- Footer Section -->
+    <footer id="contact" class="bg-royal-emerald/80 border-t border-royal-gold/30 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full border border-royal-gold flex items-center justify-center bg-royal-burgundy">
+                        <i class="fa-solid fa-crown text-royal-gold text-lg"></i>
+                    </div>
+                    <span class="font-serif text-xl font-bold tracking-widest text-white">ROYAL PALACE</span>
+                </div>
+                <p class="text-sm text-royal-champagne/70 leading-relaxed mb-4">
+                    The ultimate destination for authentic Malabar delicacies and royal fine-dining experiences.
+                </p>
+                <div class="flex gap-3 text-royal-gold">
+                    <a href="#" class="w-9 h-9 rounded-full border border-royal-gold/40 flex items-center justify-center hover:bg-royal-gold hover:text-royal-dark transition-all"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full border border-royal-gold/40 flex items-center justify-center hover:bg-royal-gold hover:text-royal-dark transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full border border-royal-gold/40 flex items-center justify-center hover:bg-royal-gold hover:text-royal-dark transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-serif text-lg font-bold text-white mb-4">Quick Links</h4>
+                <ul class="flex flex-col gap-2 text-sm text-royal-champagne/80">
+                    <li><a href="#home" class="hover:text-royal-gold transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-royal-gold transition-colors">About Us</a></li>
+                    <li><a href="#menu" class="hover:text-royal-gold transition-colors">Grand Menu</a></li>
+                    <li><a href="#reservation" class="hover:text-royal-gold transition-colors">Table Booking</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-serif text-lg font-bold text-white mb-4">Opening Hours</h4>
+                <p class="text-sm text-royal-champagne/80 mb-2">Monday - Sunday</p>
+                <p class="text-sm text-royal-gold font-bold mb-4">11:00 AM - 11:30 PM</p>
+                <p class="text-xs text-emerald-400 font-semibold"><i class="fa-solid fa-circle-check"></i> 100% Halal Certified Kitchen</p>
+            </div>
+            <div>
+                <h4 class="font-serif text-lg font-bold text-white mb-4">Contact Palace</h4>
+                <p class="text-sm text-royal-champagne/80 mb-2"><i class="fa-solid fa-location-dot text-royal-gold mr-2"></i> Marine Drive, Kozhikode, Kerala</p>
+                <p class="text-sm text-royal-champagne/80 mb-2"><i class="fa-solid fa-phone text-royal-gold mr-2"></i> +91 484 2345 678</p>
+                <p class="text-sm text-royal-champagne/80"><i class="fa-solid fa-envelope text-royal-gold mr-2"></i> concierge@hotelroyalpalace.com</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-royal-gold/20 text-center text-xs text-royal-champagne/50">
+            &copy; 2026 Hotel Royal Palace. All Rights Reserved. Crafted for Ultimate Five-Star Luxury.
+        </div>
+    </footer>
 
-const tooltip = document.getElementById('tooltip');
-function showTip(e) {
-  const t = e.target.closest('.glossed');
-  if (t && t.dataset.key) {
-    const [word, meaning] = glossary[t.dataset.key];
-    document.getElementById('t-word').textContent = word;
-    document.getElementById('t-meaning').textContent = meaning;
-    tooltip.style.display = 'block';
-  }
-}
-function moveTip(e) {
-  if (tooltip.style.display === 'block') {
-    let x = e.clientX + 14, y = e.clientY - 50;
-    if (x + 270 > window.innerWidth) x = e.clientX - 280;
-    if (y < 10) y = e.clientY + 20;
-    tooltip.style.left = x + 'px';
-    tooltip.style.top = y + 'px';
-  }
-}
-function hideTip(e) {
-  const t = e.target.closest('.glossed');
-  if (t) tooltip.style.display = 'none';
-}
+    <!-- Scripts (AOS, Swiper, Custom Logic) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
 
-buildToc(null);
-</script>
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            const bar = document.getElementById('loader-bar');
+            bar.style.width = '100%';
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(() => preloader.style.display = 'none', 700);
+            }, 500);
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+
+        // Category Filter Logic
+        function filterMenu(category) {
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-royal-gold', 'text-royal-dark');
+                btn.classList.add('border-royal-gold/40', 'text-royal-champagne');
+            });
+            event.target.classList.add('bg-royal-gold', 'text-royal-dark');
+            event.target.classList.remove('border-royal-gold/40', 'text-royal-champagne');
+
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Cart System
+        let cart = [];
+
+        function addToCart(name, price, img) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, img, qty: 1 });
+            }
+            updateCartUI();
+            
+            // Notification toast
+            showToast(`Added ${name} to your Royal Cart!`);
+        }
+
+        function updateCartUI() {
+            const countEl = document.getElementById('cart-count');
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total');
+            const emptyMsg = document.getElementById('empty-cart-msg');
+
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            countEl.textContent = totalQty;
+
+            if (cart.length === 0) {
+                emptyMsg.style.display = 'block';
+                container.innerHTML = '<p id="empty-cart-msg" class="text-center text-royal-champagne/60 my-auto font-serif">Your cart is currently empty.</p>';
+                totalEl.textContent = '₹0';
+                return;
+            }
+
+            emptyMsg.style.display = 'none';
+            container.innerHTML = '';
+            let totalAmount = 0;
+
+            cart.forEach((item, index) => {
+                totalAmount += item.price * item.qty;
+                container.innerHTML += `
+                    <div class="flex items-center gap-4 bg-royal-burgundy/40 p-3 rounded-xl border border-royal-gold/20">
+                        <img src="${item.img}" class="w-16 h-16 rounded-lg object-cover border border-royal-gold/30">
+                        <div class="flex-grow">
+                            <h4 class="font-serif text-sm font-bold text-white">${item.name}</h4>
+                            <span class="text-xs text-royal-gold font-bold">₹${item.price} x ${item.qty}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty(${index}, -1)" class="w-6 h-6 rounded bg-royal-dark text-royal-gold border border-royal-gold/30 flex items-center justify-center">-</button>
+                            <span class="text-sm font-bold text-white">${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" class="w-6 h-6 rounded bg-royal-dark text-royal-gold border border-royal-gold/30 flex items-center justify-center">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            totalEl.textContent = `₹${totalAmount}`;
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function openCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function checkoutCart() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            alert('Order placed successfully! Your royal feast is being prepared with top priority.');
+            cart = [];
+            updateCartUI();
+            openCart();
+        }
+
+        // Reservation Handler
+        function handleReservation(event) {
+            event.preventDefault();
+            const name = document.getElementById('res-name').value;
+            const date = document.getElementById('res-date').value;
+            const time = document.getElementById('res-time').value;
+            const guests = document.getElementById('res-guests').value;
+            
+            alert(`Thank you ${name}! Your table for ${guests} on ${date} at ${time} has been successfully reserved at Hotel Royal Palace.`);
+            document.getElementById('reservation-form').reset();
+        }
+
+        // AI Chatbot Widget
+        function toggleChat() {
+            const box = document.getElementById('chat-box');
+            box.classList.toggle('hidden');
+        }
+
+        function handleChatKey(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
+
+            messages.innerHTML += `
+                <div class="bg-royal-gold text-royal-dark p-3 rounded-xl max-w-[80%] ml-auto font-medium">
+                    ${text}
+                </div>
+            `;
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+
+            setTimeout(() => {
+                let reply = "Our concierge recommends trying our signature Thalassery Biryani or Royal Beef Roast. Would you like to reserve a table?";
+                const lower = text.toLowerCase();
+                if (lower.includes('biriyani') || lower.includes('biryani')) {
+                    reply = "Our Thalassery Royal Chicken Biryani is prepared with aged Kaima rice and pure ghee at ₹220!";
+                } else if (lower.includes('time') || lower.includes('open')) {
+                    reply = "We are open daily from 11:00 AM to 11:30 PM.";
+                } else if (lower.includes('table') || lower.includes('book')) {
+                    reply = "You can easily reserve a table using our VIP Reservation form on this page!";
+                }
+
+                messages.innerHTML += `
+                    <div class="bg-royal-burgundy/60 border border-royal-gold/20 p-3 rounded-xl max-w-[80%] text-royal-champagne">
+                        ${reply}
+                    </div>
+                `;
+                messages.scrollTop = messages.scrollHeight;
+            }, 600);
+        }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-24 right-6 z-50 bg-royal-gold text-royal-dark px-6 py-3 rounded-xl font-serif font-bold shadow-2xl transition-all duration-300 animate-bounce';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> ${msg}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+    </script>
 </body>
 </html>
